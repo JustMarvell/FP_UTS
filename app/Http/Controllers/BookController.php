@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -21,7 +22,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::orderBy('name')->get();
+        return view('books.create', compact('categories'));
     }
 
     /**
@@ -29,7 +31,9 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Book::create($this->validated($request));
+
+        return redirect()->route('books.index')->with('success', 'Book added.');
     }
 
     /**
@@ -43,24 +47,40 @@ class BookController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Book $book)
     {
-        //
+        $categories = Category::orderBy('name')->get();
+        return view('books.edit', compact('book', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Book $book)
     {
-        //
+        $book->update($this->validated($request));
+
+        return redirect()->route('books.index')->with('success', 'Book updated.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Book $book)
     {
-        //
+        $book->delete();
+
+        return redirect()->route('books.index')->with('success', 'Book deleted.');
+    }
+
+    // helper function to validate since it's to long
+    private function validated(Request $request) : array {
+        return $request->validate([
+            'category_id' => 'required|exist:categories,id',
+            'title' => 'required|max:255',
+            'author' => 'required|max:100',
+            'published_year' => 'required|numeric',
+            'stock' => 'required|integer|min:0',
+        ]);
     }
 }
