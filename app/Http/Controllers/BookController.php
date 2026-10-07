@@ -76,7 +76,7 @@ class BookController extends Controller
     // helper function to validate since it's to long
     private function validated(Request $request) : array {
         return $request->validate([
-            'category_id' => 'required|exist:categories,id',
+            'category_id' => 'required|exists:categories,id',
             'title' => 'required|max:255',
             'author' => 'required|max:100',
             'published_year' => 'required|numeric',
