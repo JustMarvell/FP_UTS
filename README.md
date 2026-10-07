@@ -14,7 +14,7 @@ A library inventory web app built with Laravel to complete the midterm assignmen
 ### 1. Install the project
 
 ```bash
-git clone <https://github.com/JustMarvell/FP_UTS.git>
+git clone https://github.com/JustMarvell/FP_UTS.git
 cd FP_UTS
 composer install
 cp .env.example .env
