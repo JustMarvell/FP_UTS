@@ -81,3 +81,5 @@ Open `http://127.0.0.1:8000`.
 - `books`: id, category_id (FK), title, author, published_year, stock, timestamps
 
 Relationship: `Category` hasMany `Book`, `Book` belongsTo `Category`.
+
+Try here : <a href="https://mini-perpus.freedev.app/">LINK<a>
