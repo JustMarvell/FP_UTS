@@ -5,7 +5,7 @@
 @section('content')
     <div class="flex items-center justify-between mb-4">
         <h1 class="text-2xl font-semibold">Books</h1>
-        <a href="{{ route('books.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Add Book</a>
+        <a href="{{ route('books.create') }}" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700">Add Book</a>
     </div>
 
     <div class="bg-white rounded shadow overflow-x-auto">
@@ -30,7 +30,7 @@
                         <td class="px-4 py-3">{{ $book->stock }}</td>
                         <td class="px-4 py-3">
                             <div class="flex gap-3">
-                                <a href="{{ route('books.edit', $book) }}" class="text-indigo-600 hover:underline">Edit</a>
+                                <a href="{{ route('books.edit', $book) }}" class="text-teal-600 hover:underline">Edit</a>
                                 <form method="POST" action="{{ route('books.destroy', $book) }}" onsubmit="return confirm('Delete this book?')">
                                     @csrf
                                     @method('DELETE')

@@ -17,6 +17,6 @@
 </div>
 
 <div class="flex gap-2">
-    <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">Save</button>
+    <button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700">Save</button>
     <a href="{{ route('categories.index') }}" class="px-4 py-2 rounded border hover:bg-gray-50">Cancel</a>
 </div>
