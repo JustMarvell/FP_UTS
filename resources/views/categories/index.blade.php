@@ -15,6 +15,7 @@
                     <th class="px-4 py-3">Name</th>
                     <th class="px-4 py-3">Description</th>
                     <th class="px-4 py-3">Books</th>
+                    <th class="px-4 py-3">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,9 +24,20 @@
                         <td class="px-4 py-3">{{ $category->name }}</td>
                         <td class="px-4 py-3">{{ $category->description ?? '-' }}</td>
                         <td class="px-4 py-3">{{ $category->books_count }}</td>
+                        <td class="px-4 py-3">
+                            <div class="flex gap-3">
+                                <a href="{{ route('categories.edit', $category) }}" class="text-indigo-600 hover:underline">Edit</a>
+                                <form method="POST" action="{{ route('categories.destroy', $category) }}"
+                                    onsubmit="return confirm('Delete this category?')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:underline">Delete</button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                 @empty
-                    <tr><td colspan="3" class="px-4 py-6 text-center text-gray-500">No categories yet.</td></tr>
+                    <tr><td colspan="4" class="px-4 py-6 text-center text-gray-500">No categories yet.</td></tr>
                 @endforelse
             </tbody>
         </table>
